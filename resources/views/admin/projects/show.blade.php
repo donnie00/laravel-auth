@@ -19,4 +19,5 @@
          </h6>
       </div>
    </div>
+   <a href="{{ route('admin.projects.index') }}" class="mx-3">Return to projects list</a>
 @endsection

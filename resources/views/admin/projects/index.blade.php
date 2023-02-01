@@ -29,9 +29,9 @@
                </td>
 
                <td>
-                  <a href="{{ route('admin.projects.show', $project->id) }}">See details</a>
-                  <a href="">Delete</a>
-                  <a href="{{ route('admin.projects.edit', $project->id) }}">Edit</a>
+                  <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-info">See details</a>
+                  @include('admin.projects.partials.delete-form-btn')
+                  <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">Edit</a>
                </td>
             </tr>
          @endforeach
