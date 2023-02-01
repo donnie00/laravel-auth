@@ -16,13 +16,17 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $project = new Project();
+        for ($i = 0; $i < 5; $i++) {
 
-        $project->name = $faker->name();
-        $project->description = $faker->text();
-        $project->cover_img = $faker->imageUrl();
-        $project->github_link = $faker->url();
 
-        $project->save();
+            $project = new Project();
+
+            $project->name = $faker->name();
+            $project->description = $faker->text();
+            $project->cover_img = $faker->imageUrl();
+            $project->github_link = $faker->url();
+
+            $project->save();
+        }
     }
 }
