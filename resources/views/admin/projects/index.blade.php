@@ -21,7 +21,9 @@
                <td>{{ $project->name }}</td>
                <td> {{ Str::limit($project->description, 50, '...') }} </td>
                <td>
-                  <img src="{{ $project->cover_img }}" alt="" class="img-fluid">
+                  <img
+                     src="{{ $project->cover_img ?? 'https://www.innerintegratori.it/wp-content/uploads/2021/06/placeholder-image.png' }}"
+                     alt="" class="img-fluid">
                </td>
                <td>
                   <a href="{{ $project->github_link }}">
@@ -29,9 +31,9 @@
                </td>
 
                <td>
-                  <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-info">See details</a>
+                  <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-info w-100">See details</a>
                   @include('admin.projects.partials.delete-form-btn')
-                  <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">Edit</a>
+                  <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning w-100">Edit</a>
                </td>
             </tr>
          @endforeach

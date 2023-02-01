@@ -20,4 +20,5 @@
       </div>
    </div>
    <a href="{{ route('admin.projects.index') }}" class="mx-3">Return to projects list</a>
+   <a href="{{ route('admin.projects.edit', $project->id) }}" class="mx-3">Edit this project</a>
 @endsection

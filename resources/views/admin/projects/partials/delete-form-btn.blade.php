@@ -2,6 +2,6 @@
    @csrf
    @method('DELETE')
 
-   <button class="btn btn-danger">Delete</button>
+   <button class="btn btn-danger w-100">Delete</button>
 
 </form>
