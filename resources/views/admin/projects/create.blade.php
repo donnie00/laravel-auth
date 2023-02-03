@@ -14,7 +14,7 @@
       </div>
    @endif
 
-   <form action="{{ route('admin.projects.store') }}" method="POST">
+   <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
 
       <label class="form-label">Project name:</label>
@@ -26,8 +26,7 @@
          class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
 
       <label class="form-label">Cover image:</label>
-      <input type="text" name="cover_img" class="form-control @error('cover_img') is-invalid @enderror"
-         value="{{ old('cover_img') }}">
+      <input type="file" name="cover_img" class="form-control @error('cover_img') is-invalid @enderror">
 
       <label class="form-label">Github link:</label>
       <input type="text" name="github_link" class="form-control @error('github_link') is-invalid @enderror"

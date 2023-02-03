@@ -14,7 +14,7 @@
       </div>
    @endif
 
-   <form action="{{ route('admin.projects.update', $project) }}" method="POST">
+   <form action="{{ route('admin.projects.update', $project) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PATCH')
 

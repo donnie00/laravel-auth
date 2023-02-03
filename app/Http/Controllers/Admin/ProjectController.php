@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreProjectRequest;
 use App\Http\Requests\Admin\UpdateProjectRequest;
 use App\Models\Project;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -46,7 +47,15 @@ class ProjectController extends Controller
 
         $project = new Project();
 
+        if (key_exists('cover_img', $data)) {
+            $path = Storage::put('uploaded', $data['cover_img']);
+        } else {
+            $path = null;
+        }
+
         $project->fill($data);
+        $project->cover_img = $path;
+
         $project->save();
 
         return redirect()->route('admin.projects.show', $project->id);
@@ -85,7 +94,10 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
+        $path = Storage::put('uploaded', $data['cover_img']);
+
         $project->update($data);
+        $project->cover_img = $path;
 
         return redirect()->route('admin.projects.show', $project->id);
     }

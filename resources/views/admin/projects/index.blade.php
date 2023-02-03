@@ -5,6 +5,7 @@
       <a href="{{ route('admin.projects.create') }}" class="mx-3">Add new</a>
    </div>
 
+
    <table class="table">
       <thead class="table-secondary">
          <tr>
@@ -22,7 +23,7 @@
                <td> {{ Str::limit($project->description, 50, '...') }} </td>
                <td>
                   <img
-                     src="{{ $project->cover_img ?? 'https://www.innerintegratori.it/wp-content/uploads/2021/06/placeholder-image.png' }}"
+                     src="{{ $project->cover_img ? asset('storage/' . $project->cover_img) : asset('storage/placeholder-image.png') }}"
                      alt="" class="img-fluid">
                </td>
                <td>
