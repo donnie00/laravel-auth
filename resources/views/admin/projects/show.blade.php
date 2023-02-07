@@ -5,7 +5,9 @@
 
    <div class="row">
       <div class="col">
-         <img src="{{ $project->cover_img }}" alt="..." class="img-fluid">
+         <img
+            src="{{ $project->cover_img ? asset('storage/' . $project->cover_img) : asset('storage/placeholder-image.png') }}"
+            alt="..." class="img-fluid">
       </div>
       <div class="col-8">
          <h4>Name: </h4>

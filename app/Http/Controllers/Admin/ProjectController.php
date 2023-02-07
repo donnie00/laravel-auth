@@ -45,16 +45,14 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
-        $project = new Project();
-
         if (key_exists('cover_img', $data)) {
             $path = Storage::put('uploaded', $data['cover_img']);
-        } else {
-            $path = null;
         }
 
+        $project = new Project();
+
         $project->fill($data);
-        $project->cover_img = $path;
+        $project->cover_img = $path ?? null;
 
         $project->save();
 
@@ -94,10 +92,22 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
-        $path = Storage::put('uploaded', $data['cover_img']);
+        if (key_exists('cover_img', $data)) {
 
-        $project->update($data);
-        $project->cover_img = $path;
+
+            $path = Storage::put('uploaded', $data['cover_img']);
+
+            @dump($project->cover_img);
+
+            if ($project->cover_img !== null) {
+                Storage::delete($project->cover_img);
+            }
+        }
+
+        $project->update([
+            ...$data,
+            'cover_img' => $path ?? $project->cover_img
+        ]);
 
         return redirect()->route('admin.projects.show', $project->id);
     }
@@ -110,6 +120,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+        if ($project->cover_img) {
+            Storage::delete($project->cover_img);
+        }
         $project->delete();
 
         return redirect()->route('admin.projects.index');
